@@ -1,32 +1,32 @@
 <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item active  ">
-        <a class="nav-link" href="./dashboard.html">
+      <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin">
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         </a>
       </li>
 
-      <li class="nav-item ">
-        <a class="nav-link" href="./user.html">
+      <li class="nav-item {{Request::is('admin/user*') ? 'active' : ''}}">
+        <a class="nav-link" href="/admin/user">
           <i class="material-icons">person</i>
-          <p>User Profile</p>
+          <p>User</p>
         </a>
       </li>
 
-      <li class="nav-item ">
-        <a class="nav-link" href="./tables.html">
-          <i class="material-icons">content_paste</i>
-          <p>Table List</p>
+      <li class="nav-item {{Request::is('admin/kelas*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.kelas.index')}}">
+          <i class="material-icons">school</i>
+          <p>Kelas</p>
         </a>
       </li>
-
-      <li class="nav-item ">
-        <a class="nav-link" href="./typography.html">
+{{--
+      <li class="nav-item {{Request::is('admin/podcast*') ? 'active' : ''}}">
+        <a class="nav-link" href=" {{route('admin.podcast.index')}} ">
           <i class="material-icons">library_books</i>
-          <p>Typography</p>
+          <p>Podcast</p>
         </a>
-      </li>
+      </li> --}}
 
       <li class="nav-item ">
         <a class="nav-link" href="./icons.html">

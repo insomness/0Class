@@ -5,7 +5,7 @@
     <section class="banner_part">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-xl-6">
+                <div class="col-lg-6 col-xl-6 mt-n5">
                     <div class="banner_text">
                         <div class="banner_text_iner">
                             <h5>Semua orang dapat belajar</h5>

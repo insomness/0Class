@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// frontend
 Route::get('/', 'frontend\WelcomeController@index')->name('index');
 Route::get('/about', 'frontend\WelcomeController@about')->name('about');
+Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'kelas']);
 
 // admin
-Route::get('/admin', 'admin\DashboardController@index')->name('admin.dashboard');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', 'admin\DashboardController@index')->name('dashboard');
+    Route::resource('/user', 'admin\UsersController');
+    Route::resource('/kelas', 'admin\KelasController')->parameters(['kelas' => 'kelas']);
+});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

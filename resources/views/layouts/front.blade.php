@@ -46,7 +46,7 @@
                                     <a class="nav-link" href="{{route('index')}}">Beranda</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="cource.html">Kelas</a>
+                                    <a class="nav-link" href=" {{route('kelas.index')}} ">Kelas</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="blog.html">Podcast</a>
