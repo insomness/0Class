@@ -17,7 +17,7 @@
             </h4>
             <div class="row mt-3 mb-n5">
                 <div class="col-md d-flex justify-content-end mr-3">
-                    <a href="{{route('admin.kelas.create')}}" class="btn btn-info">Tambah</a>
+                    <a href="{{route('admin.kelas.create')}}" class="btn btn-primary">Tambah</a>
                 </div>
               </div>
             <div class="card-body">
@@ -32,23 +32,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach ($kelas as $k)
+                    @forelse ($kelas as $k)
                       <tr>
                         <th scope="row">{{$loop->iteration}}</th>
                         <td> {{$k->nama_kelas}} </td>
                         <th>{{$k->jenis_kelas}}</th>
                         <td>
-                            <img src="{{asset($k->thumbnail)}}" alt="kelas">
+                            <img src="{{asset('storage/' . $k->thumbnail)}}" alt="kelas" height="100px" width="200px" >
                         </td>
                         <td>
                             <div class="d-flex">
-                                <a href="{{route('admin.kelas.show', $k->id)}}" class="btn btn-warning">Detail</a>
+                                <a href="{{route('admin.kelas.show', $k->id)}}" class="btn btn-info btn-block ">Detail</a>
                             </div>
                         </td>
                       </tr>
-                    @endforeach
+                      @empty
+                      <tr>
+                        <td colspan="5">
+                            <h4 class="d-flex justify-content-center">Tidak ada kelas, silahkan tambahkan kelas</h4>
+                        </td>
+                      </tr>
+                    @endforelse
+                    {{ $kelas->links() }}
                     </tbody>
-                  </table>
+                </table>
             </div>
           </div>
     </div>

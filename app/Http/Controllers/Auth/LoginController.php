@@ -31,7 +31,7 @@ class LoginController extends Controller
     {
         if (auth()->user()->role == 'admin') {
             return '/admin';
-        }else if(auth()->user()->role == 'basic'){
+        }else if(auth()->user()->role == 'regular'){
             return '/';
         }else if(auth()->user()->role == 'premium'){
             return '/';

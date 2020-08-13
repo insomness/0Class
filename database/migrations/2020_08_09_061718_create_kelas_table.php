@@ -16,7 +16,7 @@ class CreateKelasTable extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kelas');
-            $table->enum('jenis_kelas', ['regular', 'premium']);
+            $table->enum('jenis_kelas', ['gratis','regular', 'premium']);
             $table->string('thumbnail');
             $table->text('deskripsi');
             $table->timestamps();

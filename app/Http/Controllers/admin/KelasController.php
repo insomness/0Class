@@ -5,8 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Kelas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Video;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 class KelasController extends Controller
 {
@@ -17,7 +17,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::paginate(5);
         return view('admin.kelas.index', compact('kelas'));
     }
 
@@ -39,12 +39,17 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+            'image' => ':attribute hanya mendukung jpeg, png, bmp, gif, svg, atau webp'
+        ];
+
         $validatedData = $request->validate([
             'nama_kelas' => 'required',
             'jenis_kelas' => 'required',
             'deskripsi' => 'required',
-            'thumbnail' => 'image'
-        ]);
+            'thumbnail' => 'required|image'
+        ], $messages);
 
         $path = $request->file('thumbnail')->store('kelas', 'public');
 
@@ -80,7 +85,7 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        return view('admin.kelas.edit', compact('kelas'));
     }
 
     /**
@@ -92,7 +97,35 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        //
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+            'image' => ':attribute hanya mendukung jpeg, jpg, dan png,',
+            'size' => ':attribute terlalu besar'
+        ];
+
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required',
+            'jenis_kelas' => 'required',
+            'deskripsi' => 'required',
+            'thumbnail' => 'mimes:png,jpg,jpeg,size:2048'
+        ], $messages);
+
+        // jika ganti thumbnail
+        if($request->hasFile('thumbnail')){
+            $path = $request->file('thumbnail')->store('kelas', 'public');
+            Storage::delete('public/'.$kelas->thumbnail);
+        } else{
+            $path = $kelas->thumbnail;
+        }
+
+        Kelas::find($kelas->id)->update([
+            'nama_kelas' => $request->nama_kelas,
+            'jenis_kelas' => $request->jenis_kelas,
+            'deskripsi' => $request->deskripsi,
+            'thumbnail' => $path
+        ]);
+
+        return redirect('/admin/kelas')->with('status', 'Kelas berhasil diperbarui!');
     }
 
     /**
@@ -103,6 +136,41 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        Storage::delete('public/'.$kelas->thumbnail);
+        $kelas->videos()->delete();
+        Kelas::find($kelas->id)->delete();
+        return redirect('admin/kelas')->with('status', 'Kelas berhasil dihapus!');
+    }
+
+    public function tambahVideo($kelasId)
+    {
+        return view('admin.kelas.tambahVideo', compact('kelasId'));
+    }
+
+    public function simpanVideo(Request $request, $kelasId)
+    {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!'
+        ];
+
+        $request->validate([
+            'judul' => 'required',
+            'embed' => 'required',
+        ], $messages);
+
+        Video::create([
+            'judul' => $request->judul,
+            'embed' => $request->embed,
+            'kelas_id' => $kelasId,
+        ]);
+
+        return redirect('/admin/kelas/' . $kelasId)->with('status', 'Materi berhasil ditambahkan');
+    }
+
+    public function hapusVideo($kelasId, $videoId)
+    {
+        $video = Video::find($videoId);
+        $video->delete();
+        return redirect('admin/kelas/' . $kelasId)->with('status', 'Materi berhasil dihapus!');
     }
 }

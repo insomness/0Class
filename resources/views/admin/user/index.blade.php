@@ -24,7 +24,7 @@
                 <th>Aksi</th>
               </thead>
               <tbody>
-            @foreach ($users as $key => $user)
+            @forelse ($users as $key => $user)
                 <tr>
                   <td> {{$users->firstItem() + $key}} </td>
                   <td> {{$user->name}} </td>
@@ -42,7 +42,13 @@
                     </div>
                   </td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                    <td colspan="6">
+                        <h4 class="d-flex justify-content-center">Tidak ada User</h4>
+                    </td>
+                </tr>
+            @endforelse
             {{ $users->links() }}
               </tbody>
             </table>
