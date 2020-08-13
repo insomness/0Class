@@ -49,9 +49,6 @@
                                     <a class="nav-link" href=" {{route('kelas.index')}} ">Kelas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="blog.html">Podcast</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="blog.html">Blog</a>
                                 </li>
                                 <li class="nav-item">

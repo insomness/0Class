@@ -22,7 +22,7 @@ Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'k
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('dashboard');
-    Route::resource('/user', 'admin\UsersController');
+    Route::resource('/user', 'admin\UsersController')->except(['create', 'show', 'store']);
     Route::resource('/kelas', 'admin\KelasController')->parameters(['kelas' => 'kelas']);
     // route materi untuk kelas
     Route::get('/kelas/{kelasId}/tambahVideo', 'admin\KelasController@tambahVideo')->name('kelas.tambahvideo');

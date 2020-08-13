@@ -11,19 +11,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-lg-4">
+            @forelse ($kelas as $k)
+            <div class="col-sm-6 col-lg-4 mb-2">
                 <div class="single_special_cource">
-                    <img src="{{asset('frontTemplate')}}/img/special_cource_1.png" class="special_img" alt="">
+                    <img src="{{asset('storage/' . $k->thumbnail)}}" class="special_img" alt="">
                     <div class="special_cource_text">
-                        <a href="course-details.html" class="btn_4 px-5">Gratis</a>
-                        <a href="{{route('kelas.detail')}}" class="btn_4 px-4" style="background-color: #f44a40;">Lihat</a>
-                        <a href="course-details.html">
-                            <h3>Web Development</h3>
+                        <a href="#" class="btn_4 px-5">{{$k->jenis_kelas}}</a>
+                        <a href="{{route('kelas.show', $k->id)}}" class="btn_4 px-4" style="background-color: #f44a40;">Lihat</a>
+                        <a href="{{route('kelas.show', $k->id)}}">
+                            <h3>{{$k->nama_kelas}}</h3>
                         </a>
-                        <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                        <p>{!!$k->deskripsi!!}</p>
                     </div>
                 </div>
             </div>
+            @empty
+                <div class="col-sm-6 col-lg-4">
+                    <h4>Tidak Ada Kelas</h4>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>
