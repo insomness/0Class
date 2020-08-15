@@ -51,7 +51,7 @@ class KelasController extends Controller
             'thumbnail' => 'required|image'
         ], $messages);
 
-        $path = $request->file('thumbnail')->store('kelas', 'public');
+        $path = $request->file('thumbnail')->store('thumbnail_kelas', 'public');
 
         Kelas::create([
             'nama_kelas' => $request->nama_kelas,
@@ -107,12 +107,12 @@ class KelasController extends Controller
             'nama_kelas' => 'required',
             'jenis_kelas' => 'required',
             'deskripsi' => 'required',
-            'thumbnail' => 'mimes:png,jpg,jpeg,size:2048'
+            'thumbnail' => 'mimes:png,jpg,jpeg'
         ], $messages);
 
         // jika ganti thumbnail
         if($request->hasFile('thumbnail')){
-            $path = $request->file('thumbnail')->store('kelas', 'public');
+            $path = $request->file('thumbnail')->store('thumbnail_kelas', 'public');
             Storage::delete('public/'.$kelas->thumbnail);
         } else{
             $path = $kelas->thumbnail;

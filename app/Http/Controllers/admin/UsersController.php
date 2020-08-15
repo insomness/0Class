@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::whereIn('role', ['regular', 'premium'])->paginate(10);
+        $users = User::whereIn('role', ['regular', 'premium'])->latest()->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 

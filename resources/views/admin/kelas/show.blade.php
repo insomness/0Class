@@ -65,7 +65,7 @@
                             <td>{{$video->judul}}</td>
                             <td> {{$video->embed}} </td>
                             <td class="d-md-flex">
-                                <button type="submit" class="btn btn-info btn-block tombolEdit">Edit</button>
+                                <button type="submit" class="btn btn-info btn-block">Edit</button>
                                 <form action="{{route('admin.kelas.hapusvideo', ['kelasId' => $detailKelas[0]->id, 'videoId' => $video->id])}}" method="post">
                                     @csrf
                                     @method('DELETE')
