@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'frontend\WelcomeController@index')->name('index');
 Route::get('/about', 'frontend\WelcomeController@about')->name('about');
 Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'kelas']);
-Route::get('/kelas/{kelasId}/{videoId}')->name('kelas.belajar');
+Route::get('/kelas/{kelasId}/{videoId}', 'frontend\KelasController@belajar')->name('kelas.belajar');
 
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {

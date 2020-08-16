@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{asset('frontTemplate')}}/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{asset('frontTemplate')}}/css/style.css">
-    @yield('link')
+    @stack('link')
 </head>
 
 <body>
@@ -165,6 +165,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{asset('frontTemplate')}}/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="{{asset('frontTemplate')}}/js/custom.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -55,7 +55,7 @@
                             @break
                         @case('premium')
                             @guest
-                            <a href="{{route('login')}}" class="btn_1 d-block">Silahkan login dahulu</a>
+                            <a href="{{route('login')}}" class="btn_1 d-block">Eits.. Login dulu</a>
                             @else
                                 @unless (Auth::user()->role == 'premium')
                                     <h5>Silahkan upgrade akun anda</h5>
@@ -64,7 +64,11 @@
                             @endguest
                             @break
                         @default
-                        <a href="{{route('kelas.belajar', ['kelasId' => $kelas->id, 'videoId' => $kelas->videos[0]->id])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                        @isset($kelas->video)
+                            <a href="{{route('kelas.belajar', ['kelasId' => $kelas->id, 'videoId' => $kelas->videos[0]->id])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                            @else
+                            <p class="text-center title">Tidak ada video materi</p>
+                        @endisset
                     @endswitch
                 </div>
             </div>
