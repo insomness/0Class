@@ -15,6 +15,7 @@
   <link href="{{asset('adminTemplate')}}/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('adminTemplate')}}/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body class="dark-edition">
@@ -91,7 +92,42 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('adminTemplate')}}/js/material-dashboard.js?v=2.1.0"></script>
   {{-- custom script --}}
-  @yield('scripts')
+  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script>
+    $(document).ready( function () {
+        $('#table').DataTable({
+            "ordering": false,
+            "language": {
+            "lengthMenu": "Tampilkan _MENU_ per halaman",
+            "zeroRecords": "Data tidak ditemukan",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+            "infoEmpty": "Tidak ada data yang tersedia",
+            "infoFiltered": "(Difilter dari _MAX_ total data)"
+            }
+        });
+    });
+  </script>
+  <script>
+    //   confirm sweet alert dengan menambahkan form-delete id pada form button delete laravel
+      const alertConfirm = () => {
+      Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus aja!'
+          }).then((result) => {
+            if (result.value) {
+                document.getElementById('form-delete').submit();
+            }
+          });
+      }
+  </script>
+  @stack('scripts')
 </body>
 
 </html>

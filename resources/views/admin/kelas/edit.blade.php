@@ -46,9 +46,9 @@
                     </div>
 
                     <div class="form-group py-3 mt-3">
-                        <label for="ckeditor">Deskripsi</label>
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="ckeditor" name="deskripsi">
-                            {{$kelas->deskripsi}}
+                        <label for="editor">Deskripsi</label>
+                        <textarea name="deskripsi" id="ckeditor">
+                            {!!$kelas->deskripsi!!}
                         </textarea>
                         @error('deskripsi')
                             <div class="invalid-feedback">{{$message}}</div>
@@ -73,13 +73,14 @@
     </div>
 </div>
 @endsection
-@section('scripts')
-    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
-    <script>
-        CKEDITOR.replace( 'ckeditor', {
-            removePlugins: ['easyimage', 'image']
-        });
-        document.getElementById("files").onchange = function () {
+@push('scripts')
+<script>
+    CKEDITOR.replace( 'ckeditor', {
+        removePlugins: ['easyimage', 'image']
+    });
+</script>
+<script>
+    document.getElementById("files").onchange = function () {
     var reader = new FileReader();
 
     reader.onload = function (e) {
@@ -90,5 +91,5 @@
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
     };
-    </script>
-@endsection
+</script>
+@endpush

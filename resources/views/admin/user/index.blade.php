@@ -14,7 +14,7 @@
         <div class="card-body">
         <div id="table_data">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="table">
               <thead class=" text-primary">
                 <th>No</th>
                 <th>Nama</th>
@@ -26,7 +26,7 @@
               <tbody>
             @forelse ($users as $key => $user)
                 <tr>
-                  <td> {{$users->firstItem() + $key}} </td>
+                  <td>{{$loop->iteration}}</td>
                   <td> {{$user->name}} </td>
                   <td> {{$user->email}} </td>
                   <td> {{$user->role}} </td>
@@ -34,10 +34,10 @@
                   <td>
                     <div class="d-flex">
                     <a href="{{route('admin.user.edit', $user->id)}}" class="btn btn-primary" role="button">Edit</a>
-                    <form action="{{route('admin.user.destroy', $user->id)}}" method="post" class="float-left d-inline-block">
+                    <form action="{{route('admin.user.destroy', $user->id)}}" method="post" class="float-left d-inline-block" id="form-delete">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('yakin?')">Hapus</button>
+                        <button type="button" class="btn btn-danger" onclick="return alertConfirm()">Hapus</button>
                     </form>
                     </div>
                   </td>
@@ -49,7 +49,6 @@
                     </td>
                 </tr>
             @endforelse
-            {{ $users->links() }}
               </tbody>
             </table>
           </div>

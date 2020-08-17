@@ -24,7 +24,7 @@
 
                     <div class="form-group py-3 mt-3">
                         <label for="nama">Nama Kelas</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama_kelas" required >
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama_kelas" required value="{{old('nama')}}">
 
                         @error('nama')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -47,7 +47,7 @@
 
                     <div class="form-group py-3 mt-3">
                         <label for="ckeditor">Deskripsi</label>
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="ckeditor" name="deskripsi"></textarea>
+                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="ckeditor" name="deskripsi">{{old('deskripsi')}}</textarea>
 
                         @error('deskripsi')
                             <div class="invalid-feedback">{{$message}}</div>
@@ -58,6 +58,7 @@
                         <div class="col-md-6">
                             <label for="files">Pilih Gambar : </label>
                             <input type="file"id="files" name="thumbnail" class="d-block">
+                            <small>*Gunakan ukuran 1920*1080</small>
                         </div>
 
                         <div class="col-md-6">
@@ -71,20 +72,20 @@
     </div>
 </div>
 @endsection
-@section('scripts')
-    <script src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+@push('scripts')
     <script>
-        CKEDITOR.replace( 'ckeditor' );
+        CKEDITOR.replace( 'ckeditor', {
+            removePlugins: ['easyimage', 'image']
+        });
         document.getElementById("files").onchange = function () {
-    var reader = new FileReader();
 
-    reader.onload = function (e) {
-        // get loaded data and render thumbnail.
-        document.getElementById("preview").src = e.target.result;
-    };
-
-    // read the image file as a data URL.
-    reader.readAsDataURL(this.files[0]);
-    };
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("preview").src = e.target.result;
+        };
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+        };
     </script>
-@endsection
+@endpush

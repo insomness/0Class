@@ -20,7 +20,7 @@
                         <ul class="course_list">
                             @forelse ($kelasId->videos as $video)
                             <li class="justify-content-between align-items-center d-flex">
-                                <a href="" class="{{$video->id == Request::segment(3) ? 'btn_4' : ''}} btn-block">{{$video->judul}}</a>
+                                <a href="" class="{{$video->id == Crypt::decryptString(Request::segment(3)) ? 'btn_4' : ''}} btn-block">{{$video->judul}}</a>
                             </li>
                             @empty
                                 <li>Tidak ada video materi</li>
@@ -41,7 +41,6 @@
         settings: ['captions', 'quality', 'speed', 'loop'],
         ratio: '16:9',
         quality: { default: 576, options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240] },
-        loop: {active: true},
     });
 </script>
 @endpush

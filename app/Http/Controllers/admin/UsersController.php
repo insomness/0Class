@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::whereIn('role', ['regular', 'premium'])->latest()->paginate(10);
+        $users = User::whereIn('role', ['regular', 'premium'])->latest()->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -72,13 +72,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+        ], $messages);
+
         User::find($id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
         ]);
 
-        return redirect('admin/user');
+        return redirect('admin/user')->with('status', 'user berhasil diperbarui');
     }
 
     /**
@@ -90,6 +100,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('/admin/user')->with('status', 'user has been deleted!');
+        return redirect('/admin/user')->with('status', 'user berhasil dihapus!');
     }
 }

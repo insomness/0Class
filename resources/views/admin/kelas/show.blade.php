@@ -23,10 +23,10 @@
                 <div class="row">
                     <div class="col-md d-md-flex align-items-center">
                         <a href="{{route('admin.kelas.edit', $detailKelas[0]->id)}}" class="btn btn-info d-inline-block">Edit Kelas</a>
-                        <form action="{{route('admin.kelas.destroy', $detailKelas[0]->id)}}" method="post">
+                        <form action="{{route('admin.kelas.destroy', $detailKelas[0]->id)}}" method="post" id="form-delete">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus Kelas</button>
+                            <button type="button" class="btn btn-danger" onclick="return alertConfirm()">Hapus Kelas</button>
                         </form>
                     </div>
                 </div>
@@ -66,10 +66,10 @@
                             <td> {{$video->embed}} </td>
                             <td class="d-md-flex">
                                 <button type="submit" class="btn btn-info btn-block">Edit</button>
-                                <form action="{{route('admin.kelas.hapusvideo', ['kelasId' => $detailKelas[0]->id, 'videoId' => $video->id])}}" method="post">
+                                <form action="{{route('admin.kelas.hapusvideo', ['kelasId' => $detailKelas[0]->id, 'videoId' => $video->id])}}" method="post" id="form-delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-block">Hapus</button>
+                                    <button type="button" class="btn btn-danger btn-block" onclick="return alertConfirm()">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -86,5 +86,4 @@
         </div>
     </div>
 </div>
-
 @endsection

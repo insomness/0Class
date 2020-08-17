@@ -50,23 +50,28 @@
                             @guest
                             <a href="{{route('login')}}" class="btn_1 d-block">Eits.. Login dulu</a>
                             @else
-                            <a href="{{route('kelas.belajar', ['kelasId' => $kelas->id, 'videoId' => $kelas->videos[0]->id])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                            <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
                             @endguest
                             @break
                         @case('premium')
                             @guest
                             <a href="{{route('login')}}" class="btn_1 d-block">Eits.. Login dulu</a>
                             @else
-                                @unless (Auth::user()->role == 'premium')
-                                    <h5>Silahkan upgrade akun anda</h5>
+                                @unless (in_array(Auth::user()->role, ['premium', 'admin']))
+                                    <h5 class="text-center">Silahkan upgrade akun anda</h5>
+                                    @else
+                                        @empty($kelas->videos->count())
+                                            <p class="text-center title">Tidak ada video materi</p>
+                                        @else
+                                            <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                                        @endempty
                                 @endunless
-                                <a href="{{route('kelas.belajar', ['kelasId' => $kelas->id, 'videoId' => $kelas->videos[0]->id])}}" class="btn_1 d-block">Belajar Sekarang</a>
                             @endguest
                             @break
                         @default
-                        @isset($kelas->video)
-                            <a href="{{route('kelas.belajar', ['kelasId' => $kelas->id, 'videoId' => $kelas->videos[0]->id])}}" class="btn_1 d-block">Belajar Sekarang</a>
-                            @else
+                        @isset($kelas->videos)
+                        <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                        @else
                             <p class="text-center title">Tidak ada video materi</p>
                         @endisset
                     @endswitch

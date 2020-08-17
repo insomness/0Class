@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin
     Route::get('/kelas/{kelasId}/tambahVideo', 'admin\KelasController@tambahVideo')->name('kelas.tambahvideo');
     Route::post('/kelas/{kelasId}/simpanvideo', 'admin\KelasController@simpanVideo')->name('kelas.simpanvideo');
     Route::delete('/kelas/{kelasId}/{videoId}', 'admin\KelasController@hapusVideo')->name('kelas.hapusvideo');
+
+    Route::resource('/blog', 'admin\BlogController');
 });
 
 Auth::routes();

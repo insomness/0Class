@@ -11,8 +11,10 @@
                             <h5>Semua orang dapat belajar</h5>
                             <h1>Belajar Tanpa Batas</h1>
                             <p>Kelas kita memberikan pelajaran yang terstruktur sehingga memudahkan anda untuk mempelajari bidang yang anda tekuni</p>
-                            <a href="#" class="btn_1">Lihat Kelas </a>
-                            <a href="#" class="btn_2">Mulai sekarang</a>
+                            <a href="{{route('kelas.index')}}" class="btn_1">Lihat Kelas </a>
+                            @guest
+                            <a href="{{route('register')}}" class="btn_2">Daftar sekarang</a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -100,25 +102,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-lg-4">
+                @foreach ($kelas as $k)
+                <div class="col-sm-6 col-lg-4 mb-2 ">
                     <div class="single_special_cource">
-                        <img src="{{asset('frontTemplate')}}/img/special_cource_1.png" class="special_img" alt="">
+                        <img src="{{asset('storage/' . $k->thumbnail)}}" class="special_img" height="225">
                         <div class="special_cource_text">
-                            <a href="course-details.html" class="btn_4">Gratis</a>
-                            <a href="course-details.html"><h3>Pemrograman Web</h3></a>
-                            <p>Menguasai Pemrograman Web dari Pemula sampai Tingkat Lanjut</p>
-                            <div class="author_info">
-                                <div class="author_img">
-                                    <img src="{{asset('frontTemplate')}}/img/author/author_1.png" alt="">
-                                    <div class="author_info_text">
-                                        <p>Dibimbing oleh : </p>
-                                        <h5><a href="#">Pak Asrol</a></h5>
-                                    </div>
-                                </div>
+                            <div class="btn_4 px-5">{{$k->jenis_kelas}}</div>
+                            <a href="{{route('kelas.show',  Crypt::encryptString($k->id))}}" class="btn_4 px-4" style="background-color: #f44a40;">Lihat</a>
+                            <a href="{{route('kelas.show', Crypt::encryptString($k->id))}}">
+                                <h3 class="text-capitalize">{{$k->nama_kelas}}</h3>
+                            </a>
+                            <div class="text-justify text-truncate ">
+                                {!!$k->deskripsi!!}
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>

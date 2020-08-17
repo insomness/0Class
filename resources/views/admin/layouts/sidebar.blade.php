@@ -20,5 +20,12 @@
           <p>Kelas</p>
         </a>
       </li>
+
+      <li class="nav-item {{Request::is('admin/blogs*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.blog.index')}}">
+          <i class="material-icons">article</i>
+          <p>Blog</p>
+        </a>
+      </li>
     </ul>
 </div>

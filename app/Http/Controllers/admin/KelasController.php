@@ -17,7 +17,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::paginate(5);
+        $kelas = Kelas::latest()->get();
         return view('admin.kelas.index', compact('kelas'));
     }
 
@@ -41,26 +41,26 @@ class KelasController extends Controller
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'image' => ':attribute hanya mendukung jpeg, png, bmp, gif, svg, atau webp'
+            'mimes' => ':attribute hanya mendukung jpeg, jpg, dan png,',
         ];
 
         $validatedData = $request->validate([
             'nama_kelas' => 'required',
             'jenis_kelas' => 'required',
             'deskripsi' => 'required',
-            'thumbnail' => 'required|image'
+            'thumbnail' => 'required|mimes:png,jpg,jpeg'
         ], $messages);
 
         $path = $request->file('thumbnail')->store('thumbnail_kelas', 'public');
 
-        Kelas::create([
+        $kelas = Kelas::create([
             'nama_kelas' => $request->nama_kelas,
             'jenis_kelas' => $request->jenis_kelas,
             'deskripsi' => $request->deskripsi,
             'thumbnail' => $path
         ]);
 
-        return redirect('/admin/kelas')->with('status', 'Kelas berhasil ditambahkan!');
+        return redirect()->route('admin.kelas.show', $kelas->id)->with('status', "Kelas berhasil ditambahkan! Silahkan tambahkan materi kelas!");
 
     }
 
@@ -99,8 +99,7 @@ class KelasController extends Controller
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'image' => ':attribute hanya mendukung jpeg, jpg, dan png,',
-            'size' => ':attribute terlalu besar'
+            'mimes' => ':attribute hanya mendukung jpeg, jpg, dan png,',
         ];
 
         $validatedData = $request->validate([

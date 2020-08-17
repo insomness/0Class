@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Kelas;
 use App\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class KelasController extends Controller
 {
@@ -15,13 +16,21 @@ class KelasController extends Controller
         return view('frontend.kelas.index', compact('kelas'));
     }
 
-    public function show(Kelas $kelas)
+    public function show($kelas)
     {
+        $dec_id = Crypt::decryptString($kelas);
+        $kelas = Kelas::find($dec_id);
         return view('frontend.kelas.show', compact('kelas'));
     }
 
-    public function belajar(Kelas $kelasId, Video $videoId)
+    public function belajar($kelasId, $videoId)
     {
+        $dec_kelasId = Crypt::decryptString($kelasId);
+        $dec_videoId = Crypt::decryptString($videoId);
+
+        $kelasId = Kelas::find($dec_kelasId);
+        $videoId = Video::find($dec_videoId);
+
         return view('frontend.kelas.belajar', compact(['kelasId', 'videoId']));
     }
 }
