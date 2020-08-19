@@ -20,6 +20,9 @@ Route::get('/about', 'frontend\WelcomeController@about')->name('about');
 Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'kelas']);
 Route::get('/kelas/{kelasId}/{videoId}', 'frontend\KelasController@belajar')->name('kelas.belajar');
 
+Route::resource('blog', 'frontend\BlogController')->except(['store', 'destroy', 'create', 'edit']);
+Route::resource('podcast', 'frontend\PodcastController')->except(['store', 'destroy', 'create', 'edit']);
+
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('dashboard');

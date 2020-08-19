@@ -50,7 +50,10 @@
                                     <a class="nav-link" href=" {{route('kelas.index')}} ">Kelas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="blog.html">Blog</a>
+                                    <a class="nav-link" href="{{route('podcast.index')}}">Podcast</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('about')}}">Tentang Kami</a>
@@ -69,6 +72,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if (auth()->user()->role == 'admin')
+                                            <a href="{{route('admin.dashboard')}}" class="dropdown-item">Admin dashboard</a>
+                                        @endif
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
