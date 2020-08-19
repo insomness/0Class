@@ -30,7 +30,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin
     Route::post('/kelas/{kelasId}/simpanvideo', 'admin\KelasController@simpanVideo')->name('kelas.simpanvideo');
     Route::delete('/kelas/{kelasId}/{videoId}', 'admin\KelasController@hapusVideo')->name('kelas.hapusvideo');
 
+    Route::resource('/podcast', 'admin\PodcastController');
     Route::resource('/blog', 'admin\BlogController');
+
+    Route::get('/transaksi/pending', 'admin\TransaksiController@pending')->name('transaksi.pending');
+    Route::get('/transaksi/disetujui', 'admin\TransaksiController@disetujui')->name('transaksi.disetujui');
+    Route::get('/transaksi/ditolak', 'admin\TransaksiController@ditolak')->name('transaksi.ditolak');
+    Route::resource('/transaksi', 'admin\TransaksiController');
 });
 
 Auth::routes();
