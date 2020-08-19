@@ -23,9 +23,15 @@ Route::get('/kelas/{kelasId}/{videoId}', 'frontend\KelasController@belajar')->na
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {
     Route::get('/', 'admin\DashboardController@index')->name('dashboard');
-    Route::resource('/user', 'admin\UsersController')->except(['create', 'show', 'store']);
+    // user dan akun admin
+    Route::resource('/user', 'admin\UserController')->except(['create', 'show', 'store']);
+    Route::get('/editprofil', 'admin\UserController@editProfil')->name('user.edit_profil');
+    Route::get('/ubahpassword', 'admin\UserController@ubahPassword')->name('user.ubah_password');
+    Route::patch('/simpanubahpassword', 'admin\UserController@simpanUbahPassword')->name('user.simpan_ubah_password');
+    Route::patch('/simpaneditprofil', 'admin\UserController@simpanEditProfil')->name('user.simpan_edit_profil');
+
     Route::resource('/kelas', 'admin\KelasController')->parameters(['kelas' => 'kelas']);
-    // route materi untuk kelas
+    // route materi kelas
     Route::get('/kelas/{kelasId}/tambahVideo', 'admin\KelasController@tambahVideo')->name('kelas.tambahvideo');
     Route::post('/kelas/{kelasId}/simpanvideo', 'admin\KelasController@simpanVideo')->name('kelas.simpanvideo');
     Route::delete('/kelas/{kelasId}/{videoId}', 'admin\KelasController@hapusVideo')->name('kelas.hapusvideo');

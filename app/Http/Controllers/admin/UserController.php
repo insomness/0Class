@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Rules\MatchOldPassword;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -101,5 +104,45 @@ class UsersController extends Controller
     {
         User::destroy($id);
         return redirect('/admin/user')->with('status', 'user berhasil dihapus!');
+    }
+
+    public function editProfil()
+    {
+        return view('admin.user.edit_profil');
+    }
+
+    public function simpanEditProfil(Request $request)
+    {
+            $validate = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.auth()->user()->id,
+            ]);
+
+            User::find(auth()->user()->id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            return redirect('/admin')->with('status', 'Akun berhasil diperbarui');
+    }
+
+    public function UbahPassword()
+    {
+        return view('admin.user.ubah_password');
+    }
+
+    public function simpanUbahPassword(Request $request)
+    {
+        $request->validate([
+            'oldPassword' => ['required', new MatchOldPassword],
+            'password' => ['required', 'confirmed'],
+            'password_confirmation' => ['required']
+        ]);
+
+        User::find(auth()->user()->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect('/admin')->with('status', 'Password berhasil diperbarui');
     }
 }
