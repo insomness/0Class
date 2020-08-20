@@ -23,6 +23,5 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "videojs-youtube": "^2.6.1"
     }
 }
