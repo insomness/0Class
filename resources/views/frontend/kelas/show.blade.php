@@ -48,9 +48,13 @@
                     @switch($kelas->jenis_kelas)
                         @case('regular')
                             @guest
-                            <a href="{{route('login')}}" class="btn_1 d-block">Eits.. Login dulu</a>
+                                <a href="{{route('login')}}" class="btn_1 d-block">Eits.. Login dulu</a>
                             @else
-                            <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                                @empty($kelas->videos->count())
+                                    <p class="text-center title">Tidak ada video materi</p>
+                                @else
+                                    <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                                @endempty
                             @endguest
                             @break
                         @case('premium')
@@ -69,11 +73,11 @@
                             @endguest
                             @break
                         @default
-                        @isset($kelas->videos)
-                        <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
-                        @else
+                        @empty($kelas->videos->count())
                             <p class="text-center title">Tidak ada video materi</p>
-                        @endisset
+                        @else
+                            <a href="{{route('kelas.belajar', ['kelasId' => Crypt::encryptString($kelas->id), 'videoId' => Crypt::encryptString($kelas->videos[0]->id)])}}" class="btn_1 d-block">Belajar Sekarang</a>
+                        @endempty
                     @endswitch
                 </div>
             </div>
