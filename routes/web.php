@@ -17,14 +17,26 @@ use Illuminate\Support\Facades\Route;
 // frontend
 Route::get('/', 'frontend\WelcomeController@index')->name('index');
 Route::get('/about', 'frontend\WelcomeController@about')->name('about');
-Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'kelas']);
 Route::get('/kelas/{kelasId}/{videoId}', 'frontend\KelasController@belajar')->name('kelas.belajar');
-
+Route::resource('/kelas', 'frontend\KelasController')->parameters(['kelas' => 'kelas']);
 Route::resource('blog', 'frontend\BlogController')->except(['store', 'destroy', 'create', 'edit']);
 Route::resource('podcast', 'frontend\PodcastController')->except(['store', 'destroy', 'create', 'edit']);
 
+// akun
+Route::group(['middleware' => ['auth', 'roles:regular,premium']], function(){
+    Route::get('upgradepremium', 'frontend\TransaksiController@upgradePremium')->name('upgrade_premium');
+    Route::post('kirimbuktitransfer', 'frontend\TransaksiController@kirimBuktiTransfer')->name('kirim_bukti_transfer');
+    Route::patch('kirimulangbuktitransfer', 'frontend\TransaksiController@kirimUlangBuktiTransfer')->name('kirim_ulang_bukti_transfer');
+
+    Route::get('/akun/detail', 'frontend\AkunController@detailAkun')->name('akun.detail');
+    Route::get('/akun/edit', 'frontend\AkunController@editAkun')->name('akun.edit');
+    Route::get('/akun/ubahpassword', 'frontend\AkunController@ubahPassword')->name('akun.ubah_password');
+    Route::patch('/akun/edit', 'frontend\AkunController@updateAkun')->name('akun.update');
+    Route::patch('/akun/simpanubahpassword', 'frontend\AkunController@simpanUbahPassword')->name('akun.simpan_ubah_password');
+});
+
 // admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'roles:admin']], function () {
     Route::get('/', 'admin\DashboardController@index')->name('dashboard');
     // user dan akun admin
     Route::resource('/user', 'admin\UserController')->except(['create', 'show', 'store']);

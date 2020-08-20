@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('frontTemplate')}}/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{asset('frontTemplate')}}/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     @stack('link')
 </head>
 
@@ -74,6 +75,11 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if (auth()->user()->role == 'admin')
                                             <a href="{{route('admin.dashboard')}}" class="dropdown-item">Admin dashboard</a>
+                                        @else
+                                            <a href="{{route('akun.detail')}}" class="dropdown-item">Akun</a>
+                                            @if (auth()->user()->role == 'regular')
+                                                <a href="{{route('upgrade_premium')}}" class="dropdown-item">Upgrade premium</a>
+                                            @endif
                                         @endif
 
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -172,6 +178,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{asset('frontTemplate')}}/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="{{asset('frontTemplate')}}/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    @if(session('status'))
+    <script>
+        Swal.fire({
+            title: 'Sukses ...!',
+            text: '{{ session("status")}}',
+            icon: 'success',
+            showClass: {
+                popup: 'animate__animated animate__backInLeft'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__backOutRight'
+            }
+        });
+    </script>
+    @endif
     @stack('scripts')
 </body>
 

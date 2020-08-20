@@ -156,24 +156,25 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($blogs as $blog)
                 <div class="col-sm-6 col-lg-4 col-xl-4">
                     <div class="single-home-blog">
                         <div class="card">
-                            <img src="{{asset('frontTemplate')}}/img/blog/blog_1.png" class="card-img-top" alt="blog">
+                            <img src="{{asset('storage/'.$blog->thumbnail)}}" class="card-img-top" alt="blog">
                             <div class="card-body">
-                                <a href="#" class="btn_4">Design</a>
-                                <a href="blog.html">
-                                    <h5 class="card-title">Jadilah Jack Of All Trades</h5>
+                                <a href="{{route('blog.show', $blog->id)}}" class="btn_4">Lihat</a>
+                                <a href="{{route('blog.show', $blog->id)}}}">
+                                    <h5 class="card-title">{{$blog->judul}}</h5>
                                 </a>
-                                <p>Dengan memiliki pengetahunan luas kamu akan menjadi Jack Of All Trades</p>
+                                <div class="text-truncate" style="height: 25px">{!!$blog->konten!!}</div>
                                 <ul>
-                                    <li> <span class="ti-comments"></span>2 Comments</li>
-                                    <li> <span class="ti-heart"></span>2k Like</li>
+                                    <li> <span class="ti-info-alt"></span>{{$blog->created_at->toDateString()}}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
