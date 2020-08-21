@@ -42,7 +42,7 @@
                                 {{$r->nomor_rekening}} - {{$r->atas_nama}}
                             </option>
                             @empty
-                            <option value="">Mohon isi nomor rekening</option>
+                            <option disabled>Mohon isi nomor rekening pada tombol cek rekening</option>
                             @endforelse
                         </select>
 

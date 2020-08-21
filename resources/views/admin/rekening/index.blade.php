@@ -39,7 +39,7 @@
                         <td>
                             <div class="d-flex">
                                 <a href="{{route('admin.rekening.edit', $r->id)}}" class="btn btn-info btn-block ">Edit</a>
-                                <form action="{{route('admin.rekening.destroy', $r->id)}}" method="POST">
+                                <form action="{{route('admin.rekening.destroy', $r->id)}}" method="POST" id="form-delete">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-danger" onclick="return alertConfirm()">Hapus Rekening
