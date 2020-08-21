@@ -83,7 +83,7 @@
                             <li><span class="ti-pencil-alt"></span>Guru yang kompeten dan memiliki bakat dalam bercanda tawa</li>
                             <li><span class="ti-ruler-pencil"></span>Materi pembelajaran yang lengkap dan terstruktur baik dan Gaya penyampaian yang mudah dipahami oleh Pemula sampai Tingkat Lanjut.</li>
                         </ul>
-                        <a href="#" class="btn_1">Baca Lebih lanjut</a>
+                        <a href="{{route('about')}}" class="btn_1">Baca Lebih lanjut</a>
                     </div>
                 </div>
             </div>

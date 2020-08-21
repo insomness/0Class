@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Blog;
 use App\Http\Controllers\Controller;
 use App\Kelas;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -18,6 +19,7 @@ class WelcomeController extends Controller
 
     public function about()
     {
-        return view('frontend.about');
+        $setting = Setting::first();
+        return view('frontend.about', compact('setting'));
     }
 }
