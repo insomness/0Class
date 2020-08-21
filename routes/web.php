@@ -58,6 +58,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/transaksi/disetujui', 'admin\TransaksiController@disetujui')->name('transaksi.disetujui');
     Route::get('/transaksi/ditolak', 'admin\TransaksiController@ditolak')->name('transaksi.ditolak');
     Route::resource('/transaksi', 'admin\TransaksiController');
+
+    Route::get('/setting', 'admin\SettingController@index')->name('setting.index');
+    Route::patch('/setting', 'admin\SettingController@simpanSetting')->name('setting.simpan');
+
+    Route::resource('/rekening', 'admin\RekeningController');
 });
 
 Auth::routes();

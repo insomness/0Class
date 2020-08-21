@@ -28,7 +28,7 @@
         </a>
       </li>
 
-      <li class="nav-item {{Request::is('admin/blogs*') ? 'active' : ''}}">
+      <li class="nav-item {{Request::is('admin/blog*') ? 'active' : ''}}">
         <a class="nav-link" href="{{route('admin.blog.index')}}">
           <i class="material-icons">article</i>
           <p>Blog</p>
@@ -55,6 +55,13 @@
                 <p>Ditolak</p>
             </a>
         </div>
+      </li>
+
+      <li class="nav-item {{Request::is('admin/setting*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.setting.index')}}">
+          <i class="material-icons">miscellaneous_services</i>
+          <p>Settings</p>
+        </a>
       </li>
 
     </ul>
