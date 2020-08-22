@@ -8,22 +8,22 @@
     <div class="col-md-12">
         <div class="card card-nav-tabs">
             <h4 class="card-header card-header-primary">
-                Detail {{$detailKelas[0]->nama_kelas}}
+                Detail {{$kelas->nama_kelas}}
             </h4>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Jenis Kelas: {{$detailKelas[0]->jenis_kelas}}</p>
-                        <p>Deskripsi: <br>{!!$detailKelas[0]->deskripsi!!}</p>
+                        <p>Jenis Kelas: {{$kelas->jenis_kelas}}</p>
+                        <p>Deskripsi: <br>{!!$kelas->deskripsi!!}</p>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{asset('storage/' . $detailKelas[0]->thumbnail)}}" class="img-fluid">
+                        <img src="{{asset('storage/' . $kelas->thumbnail)}}" class="img-fluid">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md d-md-flex align-items-center">
-                        <a href="{{route('admin.kelas.edit', $detailKelas[0]->id)}}" class="btn btn-info d-inline-block">Edit Kelas</a>
-                        <form action="{{route('admin.kelas.destroy', $detailKelas[0]->id)}}" method="post" id="form-delete">
+                        <a href="{{route('admin.kelas.edit', $kelas->id)}}" class="btn btn-info d-inline-block">Edit Kelas</a>
+                        <form action="{{route('admin.kelas.destroy', $kelas->id)}}" method="post" id="form-delete">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-danger" onclick="return alertConfirm()">Hapus Kelas</button>
@@ -43,7 +43,7 @@
             </h4>
             <div class="row">
                 <div class="col-md d-flex justify-content-end">
-                    <a href="{{route('admin.kelas.tambahvideo', $detailKelas[0]->id)}}" class="btn btn-primary mr-3 mt-3 mb-n3">
+                    <a href="{{route('admin.kelas.tambahvideo', $kelas->id)}}" class="btn btn-primary mr-3 mt-3 mb-n3">
                         Tambah Materi
                       </a>
                 </div>
@@ -59,14 +59,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @forelse ($detailKelas[0]->videos as $video)
+                        @forelse ($kelas->videos as $video)
                         <tr>
                             <td> {{$loop->iteration}} </td>
                             <td>{{$video->judul}}</td>
                             <td> {{$video->embed}} </td>
                             <td class="d-md-flex">
                                 <button type="submit" class="btn btn-info btn-block">Edit</button>
-                                <form action="{{route('admin.kelas.hapusvideo', ['kelasId' => $detailKelas[0]->id, 'videoId' => $video->id])}}" method="post" id="form-delete">
+                                <form action="{{route('admin.kelas.hapusvideo', ['kelasId' => $kelas->id, 'videoId' => $video->id])}}" method="post" id="form-delete">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger btn-block" onclick="return alertConfirm()">Hapus</button>
