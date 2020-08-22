@@ -28,9 +28,9 @@ class KelasController extends Controller
         $dec_kelasId = Crypt::decryptString($kelasId);
         $dec_videoId = Crypt::decryptString($videoId);
 
-        $kelasId = Kelas::find($dec_kelasId);
-        $videoId = Video::find($dec_videoId);
+        $kelas = Kelas::find($dec_kelasId);
+        $video = Video::find($dec_videoId);
 
-        return view('frontend.kelas.belajar', compact(['kelasId', 'videoId']));
+        return view('frontend.kelas.belajar', compact(['kelas', 'video']));
     }
 }

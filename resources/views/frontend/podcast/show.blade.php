@@ -4,15 +4,19 @@
 <section class="course_details_area section_padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 course_details_left">
+            <div class="col-lg course_details_left">
                 <div class="main_image">
                     <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{$podcast->embed}}"></div>
                 </div>
             </div>
-            <div class="col-lg-4 mt-n5">
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <div class="text-justify">
                 <h4 class="title_top">{{$podcast->judul}}</h4>
                 <div class="content">
                     {!!$podcast->deskripsi!!}
+                </div>
                 </div>
             </div>
         </div>

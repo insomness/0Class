@@ -19,7 +19,7 @@
                         <div class="btn_4 px-5">Podcast</div>
                         <a href="{{route('podcast.show',  $podcast->id)}}" class="btn_4 px-4" style="background-color: #f44a40;">Lihat</a>
                         <a href="{{route('podcast.show', $podcast->id)}}">
-                            <h3 class="text-capitalize">{{$podcast->judul}}</h3>
+                            <h3 class="text-capitalize text-truncate">{{$podcast->judul}}</h3>
                         </a>
                         <div class="text-justify text-truncate" style="height: 50px">
                             {!!$podcast->deskripsi!!}

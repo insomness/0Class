@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-lg-8 course_details_left">
                 <div class="main_image">
-                    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{$videoId->embed}}"></div>
+                    <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{$video->embed}}"></div>
                 </div>
                 <div class="content_wrapper">
-                    <h4 class="title_top">{{$videoId->judul}}</h4>
+                    <h4 class="title_top">{{$video->judul}}</h4>
                 </div>
             </div>
 
@@ -18,9 +18,14 @@
                     <h4 class="title mt-n5">Materi Kelas</h4>
                     <div class="content">
                         <ul class="course_list">
-                            @forelse ($kelasId->videos as $video)
+                            @forelse ($kelas->videos as $video)
                             <li class="justify-content-between align-items-center d-flex">
-                                <a href="" class="{{$video->id == Crypt::decryptString(Request::segment(3)) ? 'btn_4' : ''}} btn-block">{{$video->judul}}</a>
+                                <a href="{{route('kelas.belajar', [
+                                    'kelasId' => Crypt::encryptString($kelas->id),
+                                    'videoId' => Crypt::encryptString($video->id),
+                                    ])}}"
+                                    class="{{$video->id == Crypt::decryptString(Request::segment(3)) ? 'btn_4' : ''}} btn-block">{{$video->judul}}
+                                </a>
                             </li>
                             @empty
                                 <li>Tidak ada video materi</li>

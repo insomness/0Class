@@ -47,9 +47,9 @@
 
                         @if ($cek->count() > 0 && $cek->first()->status == 2 && Auth::user()->role == 'regular')
                             <h4>Pembayaran anda ditolak, mohon kirim ulang bukti dengan benar dan jelas</h4>
-                            <h4>Silahkan transfer sebesar Rp.150.000 ke nomor rekening dibawah ini</h4>
+                            <h4>Silahkan transfer sebesar Rp. {{number_format($setting->harga, 2, ',', '.')}} ke nomor rekening dibawah ini</h4>
                             <ul>
-                                <li> - 456789802 Atas Nama <b>Fitrah Maulana</b></li>
+                                <li> - {{$setting->rekening->nomor_rekening}} Atas Nama <b>{{$setting->rekening->atas_nama}}</b></li>
                             </ul>
                             <form method="POST" action="{{route('kirim_ulang_bukti_transfer')}}" class="mt-4" enctype="multipart/form-data">
                                 @csrf

@@ -112,7 +112,7 @@
                             <a href="{{route('kelas.show', Crypt::encryptString($k->id))}}">
                                 <h3 class="text-capitalize">{{$k->nama_kelas}}</h3>
                             </a>
-                            <div class="text-justify text-truncate ">
+                            <div class="text-justify text-truncate" style="height: 50px">
                                 {!!$k->deskripsi!!}
                             </div>
                         </div>
