@@ -1,5 +1,5 @@
     @extends('layouts.front')
-    @section('title', 'Kelas kita')
+    @section('title', config('app.name'))
     @section('content')
     <!-- banner part start-->
     <section class="banner_part">
@@ -10,7 +10,7 @@
                         <div class="banner_text_iner">
                             <h5>Semua orang dapat belajar</h5>
                             <h1>Belajar Tanpa Batas</h1>
-                            <p>Kelas kita memberikan pelajaran yang terstruktur sehingga memudahkan anda untuk mempelajari bidang yang anda tekuni</p>
+                            <p>{{config('app.name')}} memberikan pelajaran yang terstruktur sehingga memudahkan anda untuk mempelajari bidang yang anda tekuni</p>
                             <a href="{{route('kelas.index')}}" class="btn_1">Lihat Kelas </a>
                             @guest
                             <a href="{{route('register')}}" class="btn_2">Daftar sekarang</a>
@@ -47,7 +47,7 @@
                         <div class="single_feature_part">
                             <span class="single_feature_icon"><i class="ti-new-window"></i></span>
                             <h4>Regular</h4>
-                            <p>Kelas ini hanya dapat diikuti oleh member yang telah mendaftar pada Kelas kita</p>
+                            <p>Kelas ini hanya dapat diikuti oleh member yang telah mendaftar pada {{config('app.name')}}</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <div class="learning_member_text">
                         <h5>Tentang Kami</h5>
                         <h2>Belajar dengan Cinta dan Canda Tawa</h2>
-                        <p>Kelas Kita merupakan platform e-learning para guru yang memiliki bakat dalam mendidik dan mengajar. Dengan tujuan menciptakan lingkungan belajar yang menyenangkan dan tanpa tekanan.<br>Apa saja kelebihan Kelas Kita?</p>
+                        <p>{{config('app.name')}} merupakan platform e-learning para guru yang memiliki bakat dalam mendidik dan mengajar. Dengan tujuan menciptakan lingkungan belajar yang menyenangkan dan tanpa tekanan.<br>Apa saja kelebihan {{config('app.name')}}?</p>
                         <ul>
                             <li><span class="ti-pencil-alt"></span>Guru yang kompeten dan memiliki bakat dalam bercanda tawa</li>
                             <li><span class="ti-ruler-pencil"></span>Materi pembelajaran yang lengkap dan terstruktur baik dan Gaya penyampaian yang mudah dipahami oleh Pemula sampai Tingkat Lanjut.</li>
