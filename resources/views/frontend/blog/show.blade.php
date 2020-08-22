@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', 'Kelas kita')
+@section('title', config('app.name'))
 @section('content')
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section_padding">
