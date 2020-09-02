@@ -15,7 +15,7 @@
                        {{$blog->judul}}
                    </h1>
                    <hr>
-                   {!!$blog->konten!!}
+                   {!! $blog->konten !!}
                 </div>
              </div>
             </div>

@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h4>Konten: </h4>
-                        {!!$blog->konten!!}
+                        {!! $blog->konten !!}
                     </div>
                 </div>
                 <div class="row">

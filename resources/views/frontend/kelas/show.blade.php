@@ -35,7 +35,7 @@
                         <li>
                             <div class="justify-content-between d-flex" style="cursor:default">
                                 <p>Kelas</p>
-                                <span class="color"> {{$kelas->nama_kelas}} </span>
+                                <span class="color ml-3"> {{$kelas->nama_kelas}} </span>
                             </div>
                         </li>
                         <li>

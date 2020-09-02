@@ -160,7 +160,7 @@
                 <div class="col-sm-6 col-lg-4 col-xl-4">
                     <div class="single-home-blog">
                         <div class="card">
-                            <img src="{{asset('storage/'.$blog->thumbnail)}}" class="card-img-top" alt="blog">
+                            <img src="{{asset('storage/'.$blog->thumbnail)}}" class="card-img-top" alt="blog" style="height: 202.5px">
                             <div class="card-body">
                                 <a href="{{route('blog.show', $blog->id)}}" class="btn_4">Lihat</a>
                                 <a href="{{route('blog.show', $blog->id)}}}">

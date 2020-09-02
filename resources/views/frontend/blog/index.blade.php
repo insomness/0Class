@@ -10,7 +10,7 @@
                 <div class="blog_left_sidebar">
                     <article class="blog_item">
                         <div class="blog_item_img">
-                            <img class="card-img rounded-0" src="{{asset('storage/'.$blog->thumbnail)}}" alt="">
+                            <img class="card-img rounded-0" src="{{asset('storage/'.$blog->thumbnail)}}" alt="" height="300">
                             <div class="blog_item_date">
                                 <h3>{{$blog->created_at->day}}</h3>
                                 <p>{{$blog->created_at->shortEnglishMonth}}</p>

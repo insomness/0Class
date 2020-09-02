@@ -61,7 +61,7 @@
 @push('scripts')
 <script>
         CKEDITOR.replace( 'ckeditor', {
-        removePlugins: ['easyimage', 'image']
+        removePlugins: ['easyimage']
     });
     document.getElementById("files").onchange = function () {
     var reader = new FileReader();
