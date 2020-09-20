@@ -60,11 +60,8 @@
                                     <a class="nav-link" href="{{route('about')}}">Tentang Kami</a>
                                 </li>
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('login')}}">Masuk</a>
-                                </li>
                                 <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="{{route('register')}}">Daftar</a>
+                                    <a class="btn_1" href="{{route('login')}}">Masuk</a>
                                 </li>
                             @else
                                 <li class="nav-item dropdown">

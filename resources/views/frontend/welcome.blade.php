@@ -110,9 +110,12 @@
                             <a href="{{route('kelas.show', Crypt::encryptString($k->id))}}">
                                 <h3 class="text-capitalize">{{$k->nama_kelas}}</h3>
                             </a>
-                            <h5 class="text-muted font-weight-light text-capitalize mt-3" >Jenis Kelas : {{$k->jenis_kelas}}</h5>
+                            <h5 class="font-weight-light text-capitalize mt-2" >Jenis Kelas : {{$k->jenis_kelas}}</h5>
+
+                            <div class="text-justify text-wrap">
+                                {!!Str::limit($k->deskripsi, 100, ' ...')!!}
+                            </div>
                         </div>
-                        <button class="btn_4 btn-block">Belajar sekarang</button>
                     </div>
                 </div>
                 @endforeach
@@ -159,11 +162,12 @@
                         <div class="card">
                             <img src="{{asset('storage/'.$blog->thumbnail)}}" class="card-img-top" alt="blog" style="height: 202.5px">
                             <div class="card-body">
-                                <a href="{{route('blog.show', $blog->id)}}" class="btn_4">Lihat</a>
                                 <a href="{{route('blog.show', $blog->id)}}}">
                                     <h5 class="card-title">{{$blog->judul}}</h5>
                                 </a>
-                                <div class="text-truncate" style="height: 25px">{!!$blog->konten!!}</div>
+                                <div class="text-justify text-wrap">
+                                    {!!Str::limit($blog->konten, 100, ' ...')!!}
+                                </div>
                                 <ul>
                                     <li> <span class="ti-info-alt"></span>{{$blog->created_at->toDateString()}}</li>
                                 </ul>

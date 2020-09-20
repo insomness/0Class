@@ -15,14 +15,14 @@
             <div class="col-sm-6 col-lg-4 mb-2 ">
                 <div class="single_special_cource">
                     <img src="{{asset('storage/' . $k->thumbnail)}}" class="special_img" height="225">
-                    <div class="special_cource_text">
-                        <div class="btn_4 px-5">{{$k->jenis_kelas}}</div>
-                        <a href="{{route('kelas.show',  Crypt::encryptString($k->id))}}" class="btn_4 px-4" style="background-color: #f44a40;">Lihat</a>
+                    <div class="special_cource_text mt-n5">
                         <a href="{{route('kelas.show', Crypt::encryptString($k->id))}}">
                             <h3 class="text-capitalize">{{$k->nama_kelas}}</h3>
                         </a>
-                        <div class="text-justify text-truncate " style="height: 50px">
-                            {!!$k->deskripsi!!}
+                        <h5 class="font-weight-light text-capitalize mt-2" >Jenis Kelas : {{$k->jenis_kelas}}</h5>
+
+                        <div class="text-justify text-wrap">
+                            {!!Str::limit($k->deskripsi, 100, ' ...')!!}
                         </div>
                     </div>
                 </div>
