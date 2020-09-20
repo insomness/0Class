@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Edit User
-@show
+@section('title', 'Edit User')
 @section('content')
 <div class="row">
     <div class="col-md-12">

@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Tambah Materi
-@show
+@section('title' ,'Detail Kelas')
 @section('content')
 <div class="row">
     <div class="col-md-12">

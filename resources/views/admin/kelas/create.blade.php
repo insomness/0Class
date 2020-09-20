@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Tambah Kelas
-@show
+@section('title', ' Tambah Kelas')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -46,8 +44,8 @@
                     </div>
 
                     <div class="form-group py-3 mt-3">
-                        <label for="ckeditor">Deskripsi</label>
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="ckeditor" name="deskripsi">{{old('deskripsi')}}</textarea>
+                        <label for="mytextarea">Deskripsi</label>
+                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="mytextarea" name="deskripsi">{{old('deskripsi')}}</textarea>
 
                         @error('deskripsi')
                             <div class="invalid-feedback">{{$message}}</div>
@@ -74,9 +72,6 @@
 @endsection
 @push('scripts')
     <script>
-        CKEDITOR.replace( 'ckeditor', {
-            removePlugins: ['easyimage', 'image']
-        });
         document.getElementById("files").onchange = function () {
 
         var reader = new FileReader();

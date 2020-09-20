@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Edit Kelas
-@show
+@section('title', 'Edit Kelas')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -46,8 +44,8 @@
                     </div>
 
                     <div class="form-group py-3 mt-3">
-                        <label for="editor">Deskripsi</label>
-                        <textarea name="deskripsi" id="ckeditor">
+                        <label for="mytextarea">Deskripsi</label>
+                        <textarea name="deskripsi" id="mytextarea">
                             {!!$kelas->deskripsi!!}
                         </textarea>
                         @error('deskripsi')
@@ -74,11 +72,6 @@
 </div>
 @endsection
 @push('scripts')
-<script>
-    CKEDITOR.replace( 'ckeditor', {
-        removePlugins: ['easyimage', 'image']
-    });
-</script>
 <script>
     document.getElementById("files").onchange = function () {
     var reader = new FileReader();

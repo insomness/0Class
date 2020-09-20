@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Settings
-@show
+@section('title', 'Settings')
 @section('content')
 <div class="row">
     <div class="col-md">
@@ -52,8 +50,8 @@
                     </div>
 
                     <div class="form-group py-3 mt-3">
-                        <label for="editor">About</label>
-                        <textarea name="about" id="ckeditor">
+                        <label for="mytextarea">About</label>
+                        <textarea name="about" id="mytextarea">
                             {!!$setting->about!!}
                         </textarea>
                         @error('about')
@@ -68,10 +66,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-<script>
-    CKEDITOR.replace( 'ckeditor', {
-        removePlugins: ['easyimage', 'image']
-    });
-</script>
-@endpush

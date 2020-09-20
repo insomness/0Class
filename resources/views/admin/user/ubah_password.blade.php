@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Edit Profil
-@show
+@section('title', 'Edit Profil')
 @section('content')
 <div class="row">
     <div class="col-md-12">

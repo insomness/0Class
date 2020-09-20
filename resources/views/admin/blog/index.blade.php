@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Data Blog
-@show
+@section('title','Data Blog')
 @section('content')
 <div class="row">
     <div class="col-md">

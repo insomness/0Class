@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Detail Blog
-@show
+@section('title', 'Detail Blog')
 @section('content')
 @include('admin.layouts.message')
 <div class="row">

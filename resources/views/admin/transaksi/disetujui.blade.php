@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-Transaksi Disetujui
-@show
+@section('title', 'Transaksi Disetujui')
 @section('content')
 <div class="row">
     <div class="col-md">

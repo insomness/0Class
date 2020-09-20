@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    dashboard
-@show
+@section('title', 'dashboard')
 @section('content')
 @include('admin.layouts.message')
 <div class="row">

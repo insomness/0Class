@@ -1,7 +1,5 @@
 @extends('admin.layouts.master')
-@section('title')
-    Detail Podcast
-@show
+@section('title', 'Detail Podcast')
 @section('content')
 @include('admin.layouts.message')
 <div class="row">

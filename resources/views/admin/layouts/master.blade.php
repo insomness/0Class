@@ -16,6 +16,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('adminTemplate')}}/demo/demo.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+  @FilemanagerScript
 </head>
 
 <body class="dark-edition">
@@ -112,10 +113,24 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('adminTemplate')}}/js/material-dashboard.js?v=2.1.0"></script>
   {{-- custom script --}}
-  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  {{-- tiny keyboard --}}
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>
+      window.onload = function () {
+          tinymce.init({
+              selector: '#mytextarea',
+              height: 480,
+              plugins: 'image autoresize link',
+              toolbar: 'bold italic underline link | image',
+              branding: false,
+              file_browser_callback: filemanager.tinyMceCallback
+          });
+      };
+  </script>
+  {{-- datatable --}}
   <script>
     $(document).ready( function () {
         $('#table').DataTable({
@@ -131,7 +146,7 @@
     });
   </script>
   <script>
-    //   confirm sweet alert dengan menambahkan form-delete id pada form button delete laravel
+    //   confirm sweet alert dengan menambahkan class form-delete pada form delete laravel
       const alertConfirm = () => {
       Swal.fire({
             title: 'Yakin ingin menghapus?',
